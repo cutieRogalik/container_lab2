@@ -10,10 +10,11 @@
 
 | Параметр | Значение |
 |---|---|
-| Фамилия | Lishchuk |
+| Номер ИСУ| 466519 |
 | Персональный порт | 5449 |
-| Префикс образа | `lishchuk-assistant` |
-| Версия базового образа Python | `python:3.11-slim` |
+| Персональный префикс | lishchuk |
+| Секретный ключ | secret19lishchuk |
+
 
 ## Структура проекта
 
@@ -26,3 +27,20 @@ assist-py/
 ├── Dockerfile.optimized
 ├── .dockerignore
 └── README.md
+```
+## Запуск приложения
+
+### 1. Сборка Docker-образа
+
+```bash
+docker build -t lishchuk-assistant:final -f Dockerfile.optimized .
+```
+
+### 2. Запуск контейнера
+```bash
+docker run -d \
+  --name lishchuk-assistant-final \
+  -p 5449:5449 \
+  -e APP_OWNER=lishchuk \
+  -e APP_SECRET=secret19lishchuk \
+  lishchuk-assistant:final
